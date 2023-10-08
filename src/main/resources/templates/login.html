@@ -16,5 +16,12 @@
   <div><label> Password : <input type="password" name="password"/> </label></div>
   <div><input type="submit" value="Sign In"/></div>
 </form>
+<button id="goJoin">회원가입</button>
 </body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  $("#goJoin").click(function(){
+    window.location = "http://localhost:8080/join"
+  });
+</script>
 </html>

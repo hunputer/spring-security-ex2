@@ -19,7 +19,7 @@ import java.util.List;
 public class AccountService implements UserDetailsService{
 
     private final UserMapper userMapper;
-    //private final BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -28,7 +28,7 @@ public class AccountService implements UserDetailsService{
         account = userMapper.findUser(account);
         if(account != null){
             List<GrantedAuthority> authorities = new ArrayList();
-            return new User(account.getId(), "{noop}"+account.getPasswd(), authorities);
+            return new User(account.getId(), account.getPasswd(), authorities);
         }
         return null;
     }
@@ -42,7 +42,7 @@ public class AccountService implements UserDetailsService{
         }
         Account newUser = new Account();
         newUser.setId(userId);
-        //newUser.setPasswd(encoder.encode(userPwd));
+        newUser.setPasswd(encoder.encode(userPwd));
         userMapper.save(newUser);
         return "회원가입 성공!";
     }

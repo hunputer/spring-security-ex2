@@ -14,7 +14,7 @@
             id,
             passwd
         ) values(
-            #{id}
+            #{id},
             #{passwd}
         )
     </insert>
