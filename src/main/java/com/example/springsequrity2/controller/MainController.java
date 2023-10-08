@@ -19,4 +19,9 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping("/hello")
+    public String hello(HttpServletRequest request){
+        return "hello";
+    }
+
 }
