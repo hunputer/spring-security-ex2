@@ -31,8 +31,7 @@ public class AccountService implements UserDetailsService{
         account.setId(username);
         account = userMapper.findUser(account);
         if(account != null){
-            LoginUtil.setId(account.getId());
-            LoginUtil.setEnabled(account.isEnabled());
+            LoginUtil.setAccount(account);
 
             List<GrantedAuthority> authorities = new ArrayList();
             return new User(account.getId(), account.getPasswd(), authorities);

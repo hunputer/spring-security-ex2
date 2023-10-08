@@ -14,6 +14,11 @@ public class Account implements UserDetails {
     private String passwd;
     private String authority;
     private boolean enabled;
+    private String name;
+
+    public String getName(){
+        return this.name;
+    }
 
     @Override
     public String getUsername() {

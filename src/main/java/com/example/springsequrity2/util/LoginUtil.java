@@ -11,20 +11,10 @@ import org.springframework.security.core.userdetails.User;
 
 public class LoginUtil {
 
-    public static String id;
-    public static String authority;
-    public static boolean enabled;
+    public static Account account;
 
-    public static void setId(String id){
-        LoginUtil.id = id;
-    }
-
-    public static void setAuthority(String authority){
-        LoginUtil.authority = id;
-    }
-
-    public static void setEnabled(Boolean enabled){
-        LoginUtil.enabled = enabled;
+    public static void setAccount(Account account){
+        LoginUtil.account = account;
     }
 
     public static boolean isLogin(){
@@ -44,10 +34,7 @@ public class LoginUtil {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(!(principal instanceof String)){
-            user = (User)principal;
-            account = new Account();
-            account.setId(LoginUtil.id);
-            account.setEnabled(LoginUtil.enabled);
+            account = LoginUtil.account;
         }
 
         return account;
