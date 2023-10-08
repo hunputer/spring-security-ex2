@@ -13,6 +13,7 @@ public class Account implements UserDetails {
     private String id;
     private String passwd;
     private String authority;
+    private boolean enabled;
 
     @Override
     public String getUsername() {
@@ -46,6 +47,6 @@ public class Account implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return this.enabled;
     }
 }

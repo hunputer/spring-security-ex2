@@ -23,7 +23,7 @@ public class AccountController {
 
     @PostMapping("/join")
     @ResponseBody
-    public void join(HttpServletRequest request, @RequestBody Account account){
+    public void join(HttpServletRequest request, @RequestBody Account account) throws Exception{
         accountService.join(account.getId(), account.getPasswd());
     }
 }
