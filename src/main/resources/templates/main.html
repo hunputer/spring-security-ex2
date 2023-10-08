@@ -17,6 +17,9 @@ hello world!
 <div sec:authorize="isAuthenticated()">
     <span sec:authentication="principal.username"></span>
     <span>님 환영합니다!</span>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>

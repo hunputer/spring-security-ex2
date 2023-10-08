@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
     <title>Title</title>
 </head>
 <body>
@@ -16,11 +14,8 @@
 <script>
 
     $("#join").click(function (){
-        debugger;
         var id = $('input[name=id]').val();
         var passwd = $('input[name=passwd]').val();
-        //var token = $("meta[name='_csrf']").attr("content");
-        //var header = $("meta[name='_csrf_header']").attr("content");
 
         $.ajax({
             type : 'post',

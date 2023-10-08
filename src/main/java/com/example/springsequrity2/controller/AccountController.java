@@ -4,8 +4,6 @@ import com.example.springsequrity2.dto.Account;
 import com.example.springsequrity2.service.AccountService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,24 +12,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController {
+public class AccountController {
 
     private final AccountService accountService;
 
-    @GetMapping("/")
-    public String main(HttpServletRequest request){
-
-        return "main";
+    @GetMapping("/join")
+    public String joinPage(HttpServletRequest request){
+        return "join";
     }
 
-    @GetMapping("/login")
-    public String login(HttpServletRequest request, @AuthenticationPrincipal Account account){
-
-        if(account != null){
-            System.out.println(account.getId());
-        }
-
-        return "login";
+    @PostMapping("/join")
+    @ResponseBody
+    public void join(HttpServletRequest request, @RequestBody Account account){
+        accountService.join(account.getId(), account.getPasswd());
     }
-
 }
