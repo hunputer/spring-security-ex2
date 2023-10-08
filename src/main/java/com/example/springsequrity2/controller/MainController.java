@@ -5,6 +5,7 @@ import com.example.springsequrity2.service.AccountService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,10 @@ public class MainController {
     private final AccountService accountService;
 
     @GetMapping("/")
-    public String main(HttpServletRequest request){
+    public String main(HttpServletRequest request, @AuthenticationPrincipal Account account){
+
+        request.setAttribute("user", account);
+
         return "main";
     }
 
