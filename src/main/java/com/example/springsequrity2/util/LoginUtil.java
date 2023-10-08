@@ -30,7 +30,6 @@ public class LoginUtil {
 
     public static Account getUser(){
         Account account = null;
-        User user = null;
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(!(principal instanceof String)){
