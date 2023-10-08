@@ -19,9 +19,7 @@ public class MainController {
     private final AccountService accountService;
 
     @GetMapping("/")
-    public String main(HttpServletRequest request, @AuthenticationPrincipal Account account){
-
-        request.setAttribute("user", account);
+    public String main(HttpServletRequest request){
 
         return "main";
     }
