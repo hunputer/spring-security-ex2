@@ -26,7 +26,7 @@ public class AccountService implements UserDetailsService{
         account = userMapper.findUser(account);
         if(account != null){
             List<GrantedAuthority> authorities = new ArrayList();
-            return new User("wlgns", "{noop}1234", authorities);
+            return new User(account.getId(), "{noop}"+account.getPasswd(), authorities);
         }
         return null;
     }
