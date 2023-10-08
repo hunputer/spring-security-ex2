@@ -24,7 +24,7 @@ public class MainController {
     @GetMapping("/")
     public String main(HttpServletRequest request){
 
-        LoginUtil.getUser();
+        Account account = LoginUtil.getUser();
 
         return "main";
     }
