@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <!--<meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
     <title>Title</title>
 </head>
 <body>
 회원가입
 <div><label> User Name : <input type="text" name="id"/> </label></div>
 <div><label> Password : <input type="password" name="passwd"/> </label></div>
-<div><input type="submit" value="Join"/></div>
+<button id="join">join</button>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-    var id = $('input[name=id]').val();
-    var passwd = $('input[name=id]').val();
 
-    $.ajax({
-        type : 'post',
-        url : '/join',
-        dataType : 'json',       // 데이터 타입 (html, xml, json, text 등등)
-        data : {
-            "id": id,
-            "passwd": passwd
-        },
-        success : function(result) { // 결과 성공 콜백함수
-            console.log(result);
-        },
-        error : function(request, status, error) { // 결과 에러 콜백함수
-            console.log(error)
-        }
+    $("#join").click(function (){
+        debugger;
+        var id = $('input[name=id]').val();
+        var passwd = $('input[name=passwd]').val();
+        //var token = $("meta[name='_csrf']").attr("content");
+        //var header = $("meta[name='_csrf_header']").attr("content");
+
+        $.ajax({
+            type : 'post',
+            url : '/join',
+            dataType : 'text',
+            data : JSON.stringify({
+                "id": id,
+                "passwd": passwd
+            }),
+            success : function(result) { // 결과 성공 콜백함수
+                console.log(result);
+            }
+        })
     })
 </script>
 </html>
