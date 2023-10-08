@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/myproject03?allowPublicKeyRetrieval=true&useSSL=false
+    username: jhchoi
+    password: 1234
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+server:
+  servlet:
+    jsp:
+      init-parameters:development: true
+
+mybatis:
+  type-aliases-package: com.example.vuejs_ex.vo
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+
+
+
+
