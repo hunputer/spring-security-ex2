@@ -1,6 +1,7 @@
 package com.example.springsequrity2.service;
 
 import com.example.springsequrity2.dto.Account;
+import com.example.springsequrity2.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,11 +16,19 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AccountService implements UserDetailsService{
+
+    private final UserMapper userMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = new Account();
-        List<GrantedAuthority> authorities = new ArrayList();
-        return new User("wlgns", "{noop}1234", authorities);
+        account.setId(username);
+        account = userMapper.findUser(account);
+        if(account != null){
+            List<GrantedAuthority> authorities = new ArrayList();
+            return new User("wlgns", "{noop}1234", authorities);
+        }
+        return null;
     }
 
 }

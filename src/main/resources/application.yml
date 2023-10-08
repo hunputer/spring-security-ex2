@@ -18,7 +18,7 @@ server:
       init-parameters:development: true
 
 mybatis:
-  type-aliases-package: com.example.vuejs_ex.vo
+  type-aliases-package: com.example.springsequrity2.dto
   mapper-locations: classpath:mybatis/mapper/**/*.xml
 
 
