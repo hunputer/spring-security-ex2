@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+회원가입
+<div><label> User Name : <input type="text" name="id"/> </label></div>
+<div><label> Password : <input type="password" name="passwd"/> </label></div>
+<div><input type="submit" value="Join"/></div>
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    var id = $('input[name=id]').val();
+    var passwd = $('input[name=id]').val();
+
+    $.ajax({
+        type : 'post',
+        url : '/join',
+        dataType : 'json',       // 데이터 타입 (html, xml, json, text 등등)
+        data : {
+            "id": id,
+            "passwd": passwd
+        },
+        success : function(result) { // 결과 성공 콜백함수
+            console.log(result);
+        },
+        error : function(request, status, error) { // 결과 에러 콜백함수
+            console.log(error)
+        }
+    })
+</script>
+</html>

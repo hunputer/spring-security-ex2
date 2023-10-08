@@ -6,6 +6,16 @@
     <select id="findUser" resultType="Account" parameterType="Account">
         SELECT *
           FROM user
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
+
+    <insert id="save" parameterType="Account">
+        insert user(
+            id,
+            passwd
+        ) values(
+            #{id}
+            #{passwd}
+        )
+    </insert>
 </mapper>

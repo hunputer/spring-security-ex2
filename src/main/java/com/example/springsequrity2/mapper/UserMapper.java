@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 
     Account findUser(Account account);
+
+    int save(Account account);
 }
