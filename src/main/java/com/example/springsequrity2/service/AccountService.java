@@ -32,9 +32,10 @@ public class AccountService implements UserDetailsService{
         account.setId(username);
         account = userMapper.findUser(account);
         if(account != null){
-            LoginUtil.setAccount(account);
             List<GrantedAuthority> authorities = new ArrayList();
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            account.setAuthorities(authorities);
+            LoginUtil.setAccount(account);
             return new User(account.getId(), account.getPasswd(), authorities);
         }
         return null;

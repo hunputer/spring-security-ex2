@@ -13,7 +13,7 @@ import java.util.List;
 public class Account implements UserDetails {
     private String id;
     private String passwd;
-    private List<Auth> authorities;
+    private List<GrantedAuthority> authorities;
     private boolean enabled;
     private String name;
 
