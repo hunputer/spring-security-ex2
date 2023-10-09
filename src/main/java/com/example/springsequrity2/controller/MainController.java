@@ -26,6 +26,9 @@ public class MainController {
 
         Account account = LoginUtil.getUser();
 
+        boolean isUser = LoginUtil.isUser();
+        boolean isManager = LoginUtil.isManager();
+
         return "main";
     }
 
