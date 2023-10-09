@@ -69,4 +69,19 @@ public class LoginUtil {
         }
         return false;
     }
+
+    public static List<String> getAuthorities(){
+        List<String> authList = null;
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!(principal instanceof String)){
+           authList = LoginUtil
+                    .account
+                    .getAuthorities()
+                   .stream()
+                   .map(GrantedAuthority::getAuthority)
+                   .toList();
+        }
+        return authList;
+    }
 }
