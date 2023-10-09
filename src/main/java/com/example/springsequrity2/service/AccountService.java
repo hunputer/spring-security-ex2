@@ -6,6 +6,7 @@ import com.example.springsequrity2.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,8 +33,8 @@ public class AccountService implements UserDetailsService{
         account = userMapper.findUser(account);
         if(account != null){
             LoginUtil.setAccount(account);
-
             List<GrantedAuthority> authorities = new ArrayList();
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
             return new User(account.getId(), account.getPasswd(), authorities);
         }
         return null;
