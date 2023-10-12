@@ -18,4 +18,10 @@
             #{passwd}
         )
     </insert>
+
+    <select id="findAuthority" resultType="Auth" parameterType="Account">
+        SELECT authority as auth
+        FROM user
+        WHERE id = #{id}
+    </select>
 </mapper>

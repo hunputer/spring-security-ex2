@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
@@ -32,8 +33,7 @@ public class AccountService implements UserDetailsService{
         account.setId(username);
         account = userMapper.findUser(account);
         if(account != null){
-            List<GrantedAuthority> authorities = new ArrayList();
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            List<GrantedAuthority> authorities = this.getAuthorites(userMapper.findAuthority(account).getAuth());
             account.setAuthorities(authorities);
             LoginUtil.setAccount(account);
             return new User(account.getId(), account.getPasswd(), authorities);
@@ -57,6 +57,18 @@ public class AccountService implements UserDetailsService{
 
     public Account getAccount(Account account){
         return userMapper.findUser(account);
+    }
+
+    public List<GrantedAuthority> getAuthorites(String authorities){
+        List<GrantedAuthority> list = new ArrayList<>();
+
+        if(!"".equals(authorities)) {
+            for(String str : Arrays.asList(authorities.split(","))){
+                list.add(new SimpleGrantedAuthority(str));
+            }
+        }
+
+        return list;
     }
 
 }

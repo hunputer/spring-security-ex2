@@ -10,7 +10,7 @@
 </head>
 <body>
 hello world!
-<div sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+<div sec:authorize="hasRole('ROLE_USER')">
     사용자님 안녕하세요
 </div>
 <div sec:authorize="hasRole('ROLE_ADMIN')">
